@@ -1,0 +1,20 @@
+{
+    "development": {
+      "username": "congtran",
+      "password": "congtran",
+      "database": "orcl",
+      "host": "192.168.44.133",
+      "port": 1521,
+      "dialect": "oracle",
+      "dialectOptions": {
+        "instanceName": "orcl"
+      },
+      "pool": {
+        "max": 5,
+        "min": 0,
+        "acquire": 30000,
+        "idle": 10000
+      }
+    }
+  }
+  

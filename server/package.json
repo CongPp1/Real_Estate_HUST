@@ -1,7 +1,22 @@
 {
-  "name": ".",
+  "name": "Real_Estate",
   "version": "1.0.0",
   "main": "server.js",
   "author": "cong",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "oracledb": "^6.6.0",
+    "sequelize": "^6.37.3",
+    "sequelize-oracle": "^3.3.2-0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7",
+    "sequelize-cli": "^6.6.2"
+  },
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "start": "node server.js"
 }
