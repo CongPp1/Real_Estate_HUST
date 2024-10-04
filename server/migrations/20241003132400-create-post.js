@@ -1,5 +1,8 @@
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
+
+const { enumData } = require('../utils/constant');
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Posts', {
@@ -16,67 +19,104 @@ module.exports = {
         type: Sequelize.STRING
       },
       address: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       province: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       district: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       ward: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       price: {
-        type: Sequelize.BIGINT
+        type: Sequelize.BIGINT,
+        allowNull: false,
+        defaultValue: 0
+      },
+      priceUnit: {
+        type: Sequelize.BIGINT,
+        defaultValue: 0
       },
       area: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 0
       },
       describe: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        allowNull: false
       },
       numberOfFloors: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        defaultValue: 1
       },
       numberOfBedrooms: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        defaultValue: 0
       },
       numberOfBathrooms: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        defaultValue: 1
       },
       isFurniture: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       listingTypes: {
-        type: Sequelize.INTEGER
+        type: Sequelize.ENUM,
+        values: enumData.listingTypes,
+        allowNull: false
       },
       postTypes: {
-        type: Sequelize.INTEGER
+        type: Sequelize.ENUM,
+        values: enumData.postTypes,
+        allowNull: false
       },
       houseDirections: {
-        type: Sequelize.INTEGER
+        type: Sequelize.ENUM,
+        values: enumData.houseDirections,
+        allowNull: false
       },
       balconyDirections: {
-        type: Sequelize.INTEGER
+        type: Sequelize.ENUM,
+        values: enumData.balconyDirections,
+        allowNull: false
       },
-      isVeryfied: {
-        type: Sequelize.BOOLEAN
+      isVerified: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       expiredDate: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       },
       expiredBoost: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       },
       status: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       avgStars: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 0
       },
       userId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Users',
+          key: 'id',  
+          as: 'userId'
+        }
       },
       createdAt: {
         allowNull: false,

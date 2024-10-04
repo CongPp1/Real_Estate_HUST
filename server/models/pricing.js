@@ -11,10 +11,17 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Pricing.hasMany(models.User, {
+        foreignKey: 'idPricing',
+        as: 'users'
+      })
     }
   }
   Pricing.init({
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.ENUM,
+      values: enumData.pricings
+    },
     isDisplayImmediately: DataTypes.BOOLEAN,
     isShowDiscribe: DataTypes.BOOLEAN,
     priority: DataTypes.INTEGER,

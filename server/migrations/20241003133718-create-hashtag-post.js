@@ -10,10 +10,20 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       postId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Posts',
+          key: 'id',
+          as: 'postId'
+        }
       },
       tagId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Hashtags',
+          key: 'id',
+          as: 'tagId'
+        }
       },
       createdAt: {
         allowNull: false,

@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Post.belongsTo(models.User, {
+        foreignKey: 'userId',
+        as: 'user'
+      })
     }
   }
   Post.init({
@@ -22,19 +26,35 @@ module.exports = (sequelize, DataTypes) => {
     ward: DataTypes.STRING,
     price: DataTypes.BIGINT,
     area: DataTypes.INTEGER,
+    priceUnit: DataTypes.BIGINT,
     describe: DataTypes.TEXT,
     numberOfFloors: DataTypes.INTEGER,
     numberOfBedrooms: DataTypes.INTEGER,
     numberOfBathrooms: DataTypes.INTEGER,
     isFurniture: DataTypes.BOOLEAN,
-    listingTypes: DataTypes.INTEGER,
-    postTypes: DataTypes.INTEGER,
-    houseDirections: DataTypes.INTEGER,
-    balconyDirections: DataTypes.INTEGER,
-    isVeryfied: DataTypes.BOOLEAN,
+    listingTypes: {
+      type: DataTypes.ENUM,
+      values: enumData.postTypes
+    },
+    postTypes: {
+      type: DataTypes.ENUM,
+      values: enumData.postTypes
+    },
+    houseDirections: {
+      type: DataTypes.ENUM,
+      values: enumData.houseDirections
+    },
+    balconyDirections: {
+      type: DataTypes.ENUM,
+      values: enumData.balconyDirections
+    },
+    isVerified: DataTypes.BOOLEAN,
     expiredDate: DataTypes.DATE,
     expiredBoost: DataTypes.DATE,
-    status: DataTypes.INTEGER,
+    status: {
+      type: DataTypes.ENUM,
+      values: enumData.postStatus
+    },
     avgStars: DataTypes.INTEGER,
     userId: DataTypes.INTEGER
   }, {
