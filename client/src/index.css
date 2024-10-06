@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@400..800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,4 +7,12 @@
   :root {
     --radius: 0.5rem
   }
+}
+
+html {
+  font-family: 'Baloo Paaji 2', sans-serif;
+}
+
+.text-shadow {
+  text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
 }
