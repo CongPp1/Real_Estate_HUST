@@ -5,6 +5,7 @@ const cors = require('cors')
 const path = require('path')
 const port = process.env.PORT || 8888
 const dbConnect = require('./config/dbconnect')
+const initRoutes = require('./routes/index.js')
 
 const app = express()
 
@@ -20,4 +21,5 @@ const listener = app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
 })
 
+initRoutes(app)
 dbConnect

@@ -1,26 +1,21 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+const { enumData } = require('../utils/constant'); // Import enumData
+
 module.exports = (sequelize, DataTypes) => {
   class Pricing extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      // Define association here
       Pricing.hasMany(models.User, {
-        foreignKey: 'idPricing',
-        as: 'users'
-      })
+        foreignKey: 'idPricing'
+      });
     }
   }
+
   Pricing.init({
     name: {
-      type: DataTypes.ENUM,
-      values: enumData.pricings
+      type: DataTypes.ENUM(...enumData.pricings),
+      allowNull: false
     },
     isDisplayImmediately: DataTypes.BOOLEAN,
     isShowDiscribe: DataTypes.BOOLEAN,
@@ -34,5 +29,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Pricing',
   });
+
   return Pricing;
 };

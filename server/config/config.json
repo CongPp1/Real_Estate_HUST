@@ -3,7 +3,7 @@
       "username": "congtran",
       "password": "congtran",
       "database": "orcl",
-      "host": "192.168.44.137",
+      "host": "192.168.44.133",
       "port": 1521,
       "dialect": "oracle",
       "dialectOptions": {

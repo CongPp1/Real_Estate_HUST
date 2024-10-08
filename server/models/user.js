@@ -13,12 +13,10 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.belongsTo(models.Pricing, {
         foreignKey: 'idPricing',
-        targetKey: 'id',
-        as: 'pricing'
+        targetKey: 'id'
       })
       User.hasMany(models.Post, {
-        foreignKey: 'userId',
-        as: 'posts'
+        foreignKey: 'userId'
       })
     }
   }

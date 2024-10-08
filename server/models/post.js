@@ -1,22 +1,16 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+const { enumData } = require('../utils/constant'); // Sử dụng destructuring để lấy enumData
+
 module.exports = (sequelize, DataTypes) => {
   class Post extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
       Post.belongsTo(models.User, {
-        foreignKey: 'userId',
-        as: 'user'
-      })
+        foreignKey: 'userId'
+      });
     }
   }
+
   Post.init({
     idPost: DataTypes.STRING,
     title: DataTypes.STRING,
@@ -33,27 +27,27 @@ module.exports = (sequelize, DataTypes) => {
     numberOfBathrooms: DataTypes.INTEGER,
     isFurniture: DataTypes.BOOLEAN,
     listingTypes: {
-      type: DataTypes.ENUM,
-      values: enumData.postTypes
+      type: DataTypes.ENUM(...enumData.listingTypes),
+      allowNull: false
     },
     postTypes: {
-      type: DataTypes.ENUM,
-      values: enumData.postTypes
+      type: DataTypes.ENUM(...enumData.postTypes),
+      allowNull: false
     },
     houseDirections: {
-      type: DataTypes.ENUM,
-      values: enumData.houseDirections
+      type: DataTypes.ENUM(...enumData.houseDirections),
+      allowNull: false
     },
     balconyDirections: {
-      type: DataTypes.ENUM,
-      values: enumData.balconyDirections
+      type: DataTypes.ENUM(...enumData.balconyDirections),
+      allowNull: false
     },
     isVerified: DataTypes.BOOLEAN,
     expiredDate: DataTypes.DATE,
     expiredBoost: DataTypes.DATE,
     status: {
-      type: DataTypes.ENUM,
-      values: enumData.postStatus
+      type: DataTypes.ENUM(...enumData.statuses),
+      allowNull: false
     },
     avgStars: DataTypes.INTEGER,
     userId: DataTypes.INTEGER
@@ -61,5 +55,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Post',
   });
+
   return Post;
 };

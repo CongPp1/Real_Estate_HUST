@@ -11,15 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Hashtag.belongsToMany(models.Post, {
+      models.Hashtag.belongsToMany(models.Post, {
         through: Hashtag_Post,
-        foreignKey: 'tagId',
-        as: 'posts'
+        foreignKey: 'tagId'
       })
-      Post.belongsToMany(models.Hashtag, {
+      models.Post.belongsToMany(models.Hashtag, {
         through: Hashtag_Post,
-        foreignKey: 'postId',
-        as: 'users'
+        foreignKey: 'postId'
       })
     }
   }
